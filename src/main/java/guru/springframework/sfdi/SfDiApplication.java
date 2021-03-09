@@ -1,5 +1,7 @@
 package guru.springframework.sfdi;
 
+import guru.springframework.sfdi.config.SfgConfig;
+import guru.springframework.sfdi.config.SfgConstructorConfig;
 import guru.springframework.sfdi.controllers.*;
 import guru.springframework.sfdi.datasources.FakeDataSource;
 import org.springframework.boot.SpringApplication;
@@ -40,10 +42,23 @@ public class SfDiApplication {
 
 		System.out.println(constructorInjectedController.getGreeting());
 
+		System.out.println("------------Fake Data Source");
 		FakeDataSource fakeDataSource = context.getBean(FakeDataSource.class);
 		System.out.println(fakeDataSource.getUsername());
 		System.out.println(fakeDataSource.getPass());
 		System.out.println(fakeDataSource.getJdbcUrl());
+
+		System.out.println("------------ config Props Bean");
+		SfgConfig sfgConfig = context.getBean(SfgConfig.class);
+		System.out.println(sfgConfig.getUsername());
+		System.out.println(sfgConfig.getPassword());
+		System.out.println(sfgConfig.getJdbcUrl());
+
+		System.out.println("------------ constructor Binding");
+		SfgConstructorConfig sfgConstructorConfig = context.getBean(SfgConstructorConfig.class);
+		System.out.println(sfgConstructorConfig.getUsername());
+		System.out.println(sfgConstructorConfig.getPassword());
+		System.out.println(sfgConstructorConfig.getJdbcUrl());
     }
 
 }
